@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books List{% endblock %}
+
+{% block body %}
+{% if books is empty%}
+    <h1>No books found</h1>
+{% else %}
+    <h1>Books List</h1>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }}</li>
+            <li>{{book.createAt|date('d/m/Y')}}</li>
+           <a href="{{ path('app_deleteBook',{'id':book.id}) }}"> <botton> supprimer </botton></a>
+        {% endfor %}
+    </ul>
+{% endif %}
+'{% endblock %}

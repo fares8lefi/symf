@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+
+{{ form_start(addFrorm) }}
+    {{ form_widget(addFrorm) }}
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+{{ form_end(addFrorm, { 'render_rest': false }) }}
