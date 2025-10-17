@@ -73,4 +73,20 @@ final class BookController extends AbstractController
     }
     
 
+    #[Route('/updateBook/{id}', name: 'app_updateBook')]
+    public function updateBook(ManagerRegistry $mr ,Request $request, int $id): Response
+    {
+       $m= $mr->getManager(); 
+        $book = $m->getRepository(Book::class)->find($id);      // recupere l'objet a modifier           
+        $from= $this->createForm(BookType::class,$book); //lui on passe l'objet a modifier   
+        $form= $from->handleRequest($request);      // gere la requete
+        if($form->isSubmitted() && $form->isValid()){
+            $m->flush(); // execute la mise a jour
+            return $this->redirectToRoute('app_getBook');
+} 
+        return $this->render('book/updateBook.html.twig', [
+            'BookController' => 'BookController',
+             "updateForm"=>$form->createView()
+        ]);
+    }
 }
