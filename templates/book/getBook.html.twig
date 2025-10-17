@@ -12,6 +12,7 @@
             <li>{{ book.title }}</li>
             <li>{{book.createAt|date('d/m/Y')}}</li>
            <a href="{{ path('app_deleteBook',{'id':book.id}) }}"> <botton> supprimer </botton></a>
+           <a href="{{ path('app_updateBook',{'id':book.id}) }}"> <botton> modifier </botton></a>
         {% endfor %}
     </ul>
 {% endif %}
